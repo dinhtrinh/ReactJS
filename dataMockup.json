@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "firstName": "Shinigami",
+      "lastName": "Sama",
+      "email": "ShinigamiSama@gmail.com"
+    },
+    {
+      "id": 2,
+      "firstName": "Samurai",
+      "lastName": "Sakura",
+      "email": "SamuraiSakura@gmail.com"
+    }
+  ]
+}
