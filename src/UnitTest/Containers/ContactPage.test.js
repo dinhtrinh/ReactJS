@@ -91,15 +91,16 @@ describe('Contact form unit test', () => {
         ).toEqual(true);
     });
 
-    it('Should be have the set state contact', () => {
+    it('Should be have the set state contact', async () => {
         const inputFirstName = subject.find({ name: 'firstName' }).first();
         const inputLastName = subject.find({ name: 'lastName' }).first();
         const inputEmail = subject.find({ name: 'email' }).first();
         const form = subject.find('form').first();
+      
         inputFirstName.simulate('change', { target: { value: 'Trinh' } });
         inputLastName.simulate('change', { target: { value: 'Nguyen' } });
         inputEmail.simulate('change', { target: { value: 'ndtrinh@gmail.com' } });
-        form.simulate('submit');
+        await form.simulate('submit');
         expect(
             store.getState().contact
         ).toEqual({
@@ -109,12 +110,13 @@ describe('Contact form unit test', () => {
                 email: 'ndtrinh@gmail.com'
             }
         });
-    });
-
-    it('Should be have the disable button after submit form', () => {
-        const buttonSubmit = subject.find('button').first();
-        expect(
-            buttonSubmit.prop('disabled')
-        ).toEqual(true);
+        
+        setTimeout(() => {
+            const buttonSubmit = subject.find('button').first();
+            expect(
+                buttonSubmit.prop('disabled')
+            ).toEqual(true);
+        }, 5000);
+      
     });
 });
