@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import ContactForm from './../../Components/ContactForm/index';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { inputDataContactForm } from './actions';
+import {
+  inputDataContactForm,
+  getDetailContactStart,
+  updateDetailContactStart
+} from './actions';
 
 class ContactPage extends Component {
   constructor(props) {
@@ -10,27 +14,39 @@ class ContactPage extends Component {
     this.submit = this.submit.bind(this);
   }
 
+  componentDidMount() {
+    const { getContactDetail } = this.props;
+    getContactDetail(1);
+  }
+
   submit = values => {
-    const { inputDataContactForm } = this.props;
+    const { inputDataContactForm, updateContact } = this.props;
     // print the form values to the console
     inputDataContactForm(values);
+    updateContact(values);
   }
 
   render() {
-    const { handleSubmit, pristine } = this.props;
-    return <ContactForm onSubmit={handleSubmit(this.submit)} pristine={pristine} />
+    const { handleSubmit, pristine, initialValues } = this.props;
+    return <ContactForm onSubmit={handleSubmit(this.submit)} pristine={pristine} initialValues={initialValues} />
   }
 }
 
-
 const contactPageEntry = reduxForm({
   form: 'contactForm',
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true
 })(ContactPage);
 
-const mapStateToProps = state => ({
-  contact: state.contact
+const mapStateToProps = ({ contact }) => ({
+  contact: contact,
+  initialValues: contact.contactDetail
 });
+
 const mapDispatchToProps = (dispatch) => ({
-  inputDataContactForm: (value) => dispatch(inputDataContactForm(value))
+  inputDataContactForm: (value) => dispatch(inputDataContactForm(value)),
+  getContactDetail: (id) => dispatch(getDetailContactStart(id)),
+  updateContact: (data) => dispatch(updateDetailContactStart(data))
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(contactPageEntry);

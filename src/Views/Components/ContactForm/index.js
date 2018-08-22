@@ -10,12 +10,19 @@ class ContactForm extends Component {
     super(props);
   }
 
+  renderHiddenField({ input: { value, onChange } }) {
+    return (
+      <input type="hidden" value={value} onChange={value => onChange(value)} />
+    );
+  }
+
   render() {
     const { onSubmit, pristine } = this.props;
     return (
       <div className="container">
         <div className='col col-4 col-sm-4 offset-md-4 contact-form'>
           <form onSubmit={onSubmit}>
+            <Field name="id" component={this.renderHiddenField} />
             <div className="form-group">
               <label htmlFor="firstName">First Name</label>
               <Field name="firstName" component="input" className="form-control" type="text" />

@@ -91,32 +91,89 @@ describe('Contact form unit test', () => {
         ).toEqual(true);
     });
 
-    it('Should be have the set state contact', async () => {
+    it('Should be have the set state contact', () => {
         const inputFirstName = subject.find({ name: 'firstName' }).first();
         const inputLastName = subject.find({ name: 'lastName' }).first();
         const inputEmail = subject.find({ name: 'email' }).first();
         const form = subject.find('form').first();
-      
+
         inputFirstName.simulate('change', { target: { value: 'Trinh' } });
         inputLastName.simulate('change', { target: { value: 'Nguyen' } });
         inputEmail.simulate('change', { target: { value: 'ndtrinh@gmail.com' } });
-        await form.simulate('submit');
+        form.simulate('submit');
         expect(
-            store.getState().contact
+            store.getState().contact.inputFormData
         ).toEqual({
-            inputFormData: {
-                firstName: 'Trinh',
-                lastName: 'Nguyen',
-                email: 'ndtrinh@gmail.com'
-            }
+            firstName: 'Trinh',
+            lastName: 'Nguyen',
+            email: 'ndtrinh@gmail.com'
         });
-        
+
         setTimeout(() => {
             const buttonSubmit = subject.find('button').first();
             expect(
                 buttonSubmit.prop('disabled')
             ).toEqual(true);
         }, 5000);
-      
+    });
+
+    it('Should be have the data when load form', () => {
+        //Check the same data when first loadform
+        setTimeout(() => {
+            expect(
+                store.getState().contact.contactDetail
+            ).toEqual({
+                id: 1,
+                firstName: 'Shinigami',
+                lastName: 'Sama',
+                email: 'ShinigamiSama@gmail.com'
+            });
+        }, 5000);
+
+        //Check disabled button when first loadform
+        const buttonSubmit = subject.find('button').first();
+        expect(
+            buttonSubmit.prop('disabled')
+        ).toEqual(true);
+
+        //Set up update contact
+        const inputFirstName = subject.find({ name: 'firstName' }).first();
+        const inputLastName = subject.find({ name: 'lastName' }).first();
+        const inputEmail = subject.find({ name: 'email' }).first();
+        const form = subject.find('form').first();
+
+        inputFirstName.simulate('change', { target: { value: 'Trinh' } });
+        inputLastName.simulate('change', { target: { value: 'Nguyen' } });
+        inputEmail.simulate('change', { target: { value: 'ndtrinh@gmail.com' } });
+        form.simulate('submit');
+
+        setTimeout(() => {
+            expect(
+                store.getState().contact.contactDetail
+            ).toEqual({
+                id: 1,
+                firstName: 'Trinh',
+                lastName: 'Nguyen',
+                email: 'ndtrinh@gmail.com'
+            });
+        }, 5000);
+
+        setTimeout(() => {
+            expect(
+                store.getState().contact.inputFormData
+            ).toEqual({
+                id: 1,
+                firstName: 'Trinh',
+                lastName: 'Nguyen',
+                email: 'ndtrinh@gmail.com'
+            });
+        }, 5000);
+
+        setTimeout(() => {
+            const buttonSubmit = subject.find('button').first();
+            expect(
+                buttonSubmit.prop('disabled')
+            ).toEqual(true);
+        }, 5000);
     });
 });
