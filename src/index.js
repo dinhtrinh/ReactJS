@@ -4,12 +4,14 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { store } from './Reducers/store';
-// import ContactPage from './Views/Containers/ContactPage';
-import RingCentralPage from './Views/Containers/RingCentralPage';
+import AppRoute from './AppRoute';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
     <Provider store={store}>
-        <RingCentralPage />
+        <BrowserRouter>
+            <AppRoute />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

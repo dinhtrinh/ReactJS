@@ -4,8 +4,10 @@ import axios from 'axios';
 class RealBaseService {
     constructor() {
         this.requestUrl = '';
-        // this.baseUrl = AppConstant.API_URL;
-        this.baseUrl = AppConstant.API_URL_RING_CENTRAL;
+        //Use Base URL of JSonServer
+        this.baseUrl = AppConstant.API_URL;
+        //Use Base URL of RingCentralServer
+        this.baseUrlRingCentral = AppConstant.API_URL_RING_CENTRAL;
         this.accessToken = AppConstant.RING_CENTRAL_ACCESS_TOKEN;
     }
 

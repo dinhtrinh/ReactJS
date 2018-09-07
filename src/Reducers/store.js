@@ -5,7 +5,14 @@ import rootReducer from './index';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleWare = CreateSagaMiddleWare();
-const initialState = {};
+
+const user = localStorage.getItem('userInformation') ? JSON.parse(localStorage.getItem('userInformation')) : null;
+const initialState = {
+    login: {
+        userInformation: user,
+        isLoggedIn: user ? true : false
+    }
+};
 const middleware = [
     sagaMiddleWare
 ];

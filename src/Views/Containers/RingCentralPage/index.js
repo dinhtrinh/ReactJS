@@ -18,7 +18,8 @@ class RingCentralPage extends Component {
     var arrPhone = values.to.split(';');
     let arrToPhone = [];
     arrPhone.map(element => {
-      arrToPhone.push({ phoneNumber: element })
+      arrToPhone.push({ phoneNumber: element });
+      return arrToPhone;
     });
     const request = {
       from: {
