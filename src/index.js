@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { store } from './Reducers/store';
-import ContactPage from './Views/Containers/ContactPage';
+// import ContactPage from './Views/Containers/ContactPage';
+import RingCentralPage from './Views/Containers/RingCentralPage';
 
 ReactDOM.render(
     <Provider store={store}>
-        <ContactPage />
-    </Provider>, 
+        <RingCentralPage />
+    </Provider>,
     document.getElementById('root')
 );
 

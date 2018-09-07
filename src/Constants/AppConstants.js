@@ -1,5 +1,7 @@
 const appConstants = {
-    API_URL: 'http://localhost:3000/'
+    API_URL: 'http://localhost:3000/',
+    API_URL_RING_CENTRAL:'https://platform.devtest.ringcentral.com/restapi/v1.0/',
+    RING_CENTRAL_ACCESS_TOKEN: 'U0pDMTFQMDFQQVMwMHxBQUJYaWQ1MGpKMjdBWGRZbjdhRC1ra2l5ZUhLanJtNHgybF9zMVI0ZW8zeHR1Mk8zMVNETFlReGROcUdIQ0IzLVRaNF9QWWRPMEVYNENYQjd4dmJsWHJoN2ZuSVVjeTJudExIczcycTVONm13NzhLbnNUZnljUlhkZGRjaTh5WGNkVlVrQm52WmdWaFQzWmtVZWJwcEFHUloySDB6c0NlNC1jMG5rU2ozWk9MMHhaTlVEcmN2N1g1LWtsS3ItSGRIQ018THE3MjdnfG9salJ3ajRnQ2ZDb0h1UEpHV0l4Z2d8QUE'
 }
 
 export default appConstants;
